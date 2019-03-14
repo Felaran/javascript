@@ -3,30 +3,35 @@
 var money = +prompt("Ваш бюждет на месяц?");
 var time = prompt("Введите дату в формате YYYY-MM-DD");
 
-var statRashody = prompt("Введите обязательную статью расходов в этом месяце");
-var sumRashody = +prompt("Во сколько обойдется?");
-
-sumRashody = Number.parseInt(sumRashody);
 
 var appData = {
         budget: money,
         timeData: time,
         expenses: {
-                statRashody: sumRashody
         },
         optionalExpenses: {
-
         },
         income: [
-
         ],
         savings: false
 };
 
 
+for (var i = 0; i < 2; i++) {
+        var statRashody = prompt("Введите обязательную статью расходов в этом месяце");
+        var sumRashody = prompt("Во сколько обойдется?");
 
-//var oneDay = (money/30) - (sumRashody/30);
+        if( (typeof(statRashody)) === 'string' && (typeof(statRashody)) != null && (typeof(sumRashody)) != null
+                && statRashody != '' && sumRashody != '' && statRashody.length < 50){
+                        appData.expenses[statRashody] = sumRashody;
+                };
 
-var oneDayBud = (appData.budget/30) - (sumRashody/30);
+};
 
-alert("Ваш бюджет на  " + appData.timeData + " " + oneDayBud);
+
+
+
+appData.moneyPerDay = appData.budget / 30;
+alert("Ежедневный бюджет " + appData.moneyPerDay);
+
+
